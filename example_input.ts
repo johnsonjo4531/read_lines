@@ -24,7 +24,6 @@ function inputReader(r: Deno.Reader) {
   console.log("-- DENO ADDER --");
   // get the value and whether it's the eof
   const [num1, eof] = await input("Enter a number: ");
-  console.log(eof);
   // just get the value
   const num2 = (await input("Enter another number: "))[0];
   console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
