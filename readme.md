@@ -12,7 +12,7 @@ time deno -A example.ts mobydick.txt
 
 or if you didn't install it yet:
 
-```
+```sh
 time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/master/example.ts mobydick.txt
 ```
 
