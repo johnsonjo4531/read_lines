@@ -1,8 +1,10 @@
-# read_lines
+# lines
 
-Main script is read_lines.ts. See the example.ts for an example to run.
+Main script is [lines.ts](./lines.ts).
 
-You can compare this with the cat implementation on deno's examples in the std library. The time spent seems to be pretty about 3x slower on my Macbook and about the same on my PC.
+## Example
+
+See the [example.ts](./example.ts) for an example to run. You can compare this with the cat implementation on deno's examples in the std library. This scripts time spent seems to be pretty about 2x slower than deno's cat example on my Macbook Pro's native terminal.
 
 This example:
 
@@ -22,8 +24,18 @@ Deno's cat example
 time deno -A https://deno.land/std/examples/cat.ts mobydick.txt
 ```
 
-You can get the [mobydick.txt from project gutenberg](https://www.gutenberg.org/files/2701/2701-0.txt) or curl it:
+You can download the [mobydick.txt from project gutenberg](https://www.gutenberg.org/files/2701/2701-0.txt) or curl it (Mac/Linux) from there like so:
 
 ```sh
 curl https://www.gutenberg.org/files/2701/2701-0.txt -o mobydick.txt
+```
+
+## Input example
+
+The `lines` function's async iterator can be used directly like in [`./example_input.ts`](./example_input.ts). The input reader created in that file is somewhat similar in style to pythons `input` function.
+
+Try it out
+
+```sh
+deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/master/example_input.ts
 ```

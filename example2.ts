@@ -1,18 +1,16 @@
-import { linesBytes } from "./lines.ts";
-import concatBytes from "./concatBytes.ts";
+import { lines } from "./lines.ts";
 
 async function cat(filenames: string[]): Promise<void> {
   const newlinebuffer = new TextEncoder().encode("\n");
   for (let filename of filenames) {
     const file = await Deno.open(filename);
     try {
-      const file_lines: Uint8Array[] = [];
-      for await (const line of linesBytes(file)) {
+      let fileStr = "";
+      for await (const line of lines(file)) {
         // you could transform the line buffers here
-        file_lines.push(line);
-        file_lines.push(newlinebuffer);
+        fileStr += line + "\n";
       }
-      Deno.stdout.write(concatBytes(...file_lines));
+      console.log(fileStr);
     } finally {
       file.close();
     }
