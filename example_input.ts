@@ -14,17 +14,16 @@ function inputReader(r: Deno.Reader) {
     if (output) {
       Deno.stdout.write(new TextEncoder().encode(output));
     }
-    const { value: line, done: eof } = await lineReader.next();
-    return [line, eof];
+    return lineReader.next();
   };
 }
 
 (async () => {
   const input = inputReader(Deno.stdin);
   console.log("-- DENO ADDER --");
-  // get the value and whether it's the eof
-  const [num1, eof] = await input("Enter a number: ");
+  // get the value and whether the iterator is finished
+  const { value: num1, done } = await input("Enter a number: ");
   // just get the value
-  const num2 = (await input("Enter another number: "))[0];
+  const num2 = (await input("Enter another number: ")).value;
   console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
 })();

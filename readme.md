@@ -43,7 +43,7 @@ $ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v1.0.1/example
 Here's an example run of the program
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v1.0.1/example_input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v1.0.2/example_input.ts
 -- DENO ADDER --
 Enter a number: 2
 Enter another number: 3
