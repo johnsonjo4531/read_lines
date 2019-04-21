@@ -1,6 +1,6 @@
-# lines
+# read_lines
 
-Main script is [lines.ts](./lines.ts).
+Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
 ## Cat Example
 
@@ -15,7 +15,7 @@ $ time deno -A examples/cat.ts mobydick.txt
 or if you didn't install it yet:
 
 ```sh
-$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.0.0/examples/cat.ts mobydick.txt
+$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/examples/cat.ts mobydick.txt
 ```
 
 Deno's cat example
@@ -37,13 +37,13 @@ The `lines` function's async iterator can be used directly like in [`./example_i
 Try it out
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.0.0/examples/input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/examples/input.ts
 ```
 
 Here's an example run of the program
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.0.0/examples/input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/examples/input.ts
 -- DENO ADDER --
 Enter a number: 2
 Enter another number: 3

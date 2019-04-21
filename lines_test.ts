@@ -1,5 +1,4 @@
-import { runTests, test } from "https://deno.land/std@v0.3.4/testing/mod.ts";
-import { assertEquals } from "https://deno.land/std@v0.3.4/testing/asserts.ts";
+import { runTests, test, assertEquals } from "./dev_deps.ts";
 import { lines, linesBuffer } from "./lines.ts";
 
 test(async function linesBufferTest() {
