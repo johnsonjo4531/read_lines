@@ -4,7 +4,7 @@ Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
 ## Cat Example
 
-See the [example.ts](./example.ts) for an example to run. You can compare this with the cat implementation on deno's examples in the std library. This script's time spent seems to be roughly 3x slower than deno's cat example on my Macbook Pro's native terminal.
+See the [`./examples/cat.ts`](./examples/cat.ts) for an example to run. You can compare this with the cat implementation on deno's examples in the std library. This script's time spent seems to be roughly 3x slower than deno's cat example on my Macbook Pro's native terminal. Note that the `time` before the commands below work on bash.
 
 This example:
 
@@ -32,7 +32,7 @@ $ curl https://www.gutenberg.org/files/2701/2701-0.txt -o mobydick.txt
 
 ## Input Example
 
-The `lines` function's async iterator can be used directly like in [`./example_input.ts`](./example_input.ts). The input reader created in that file is somewhat similar in style to pythons `input` function.
+The `lines` function's async iterator can be used directly like in [`./input.ts`](./input.ts). The input reader created in that file is somewhat similar in style to pythons `input` function. An example using the input method is given in [`./examples/input.ts`](./examples/input.ts)
 
 Try it out
 
@@ -52,7 +52,7 @@ Enter another number: 3
 
 ## Generating a long single line file
 
-This file would
+You can generate a large single line file by running the [`./createTestFile.ts`](./createTestFile.ts) script like so: (requires file redirect shown is in unix)
 
 ```sh
 deno createTestFile.ts > example.txt
