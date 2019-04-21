@@ -21,7 +21,7 @@ $ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v1.0.1
 Deno's cat example
 
 ```sh
-$ time deno -A https://deno.land/std@v0.3.0/examples/cat.ts mobydick.txt
+$ time deno -A https://deno.land/std@v0.3.4/examples/cat.ts mobydick.txt
 ```
 
 You can download the [mobydick.txt from project gutenberg](https://www.gutenberg.org/files/2701/2701-0.txt) or curl it (Mac/Linux) from there like so:
