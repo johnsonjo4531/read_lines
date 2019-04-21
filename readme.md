@@ -4,7 +4,7 @@ Main script is [lines.ts](./lines.ts).
 
 ## Cat Example
 
-See the [example.ts](./example.ts) for an example to run. You can compare this with the cat implementation on deno's examples in the std library. This script's time spent seems to be about 2x slower than deno's cat example on my Macbook Pro's native terminal.
+See the [example.ts](./example.ts) for an example to run. You can compare this with the cat implementation on deno's examples in the std library. This script's time spent seems to be roughly 3x slower than deno's cat example on my Macbook Pro's native terminal.
 
 This example:
 
