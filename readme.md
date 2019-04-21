@@ -9,13 +9,13 @@ See the [example.ts](./example.ts) for an example to run. You can compare this w
 This example:
 
 ```sh
-$ time deno -A example.ts mobydick.txt
+$ time deno -A examples/cat.ts mobydick.txt
 ```
 
 or if you didn't install it yet:
 
 ```sh
-$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v1.0.1/example.ts mobydick.txt
+$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.0.0/examples/cat.ts mobydick.txt
 ```
 
 Deno's cat example
@@ -37,15 +37,37 @@ The `lines` function's async iterator can be used directly like in [`./example_i
 Try it out
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v1.0.1/example_input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.0.0/examples/input.ts
 ```
 
 Here's an example run of the program
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v1.0.2/example_input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.0.0/examples/input.ts
 -- DENO ADDER --
 Enter a number: 2
 Enter another number: 3
 2 + 3 = 5
+```
+
+## Generating a long single line file
+
+This file would
+
+```sh
+deno createTestFile.ts > example.txt
+```
+
+The buffered lines cat example should be able to run with a long single file
+
+```sh
+deno examples/cat.ts example.txt
+```
+
+But the string lines cat example should run out of memory because the string
+being built for the line will get too large.
+I don't know a good way to get around this and keep the nice string api.
+
+```sh
+deno examples/cat2.ts example.txt
 ```
