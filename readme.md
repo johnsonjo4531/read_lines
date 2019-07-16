@@ -2,6 +2,12 @@
 
 Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
+### What and Why
+
+Lines is a module to read a file line by line using promises and/or async/await. It can be useful for getting buffers of the lines with the exported `linesBuffer` method or for getting the decoded strings of the lines with the `lines` method.
+
+Input is a module that is inspired by pythons input method. It allows writing to a file stream (like stdout) and waiting for input seperated by a newline by reading from a filestream (such as stdin).
+
 ## Usage
 
 ### lines module
@@ -12,17 +18,17 @@ Importing the lines module:
 import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
 ```
 
-Usage:
-
 #### linesBuffer
 
-signature
+signature:
 
 ```ts
 async function* linesBuffer(
 	reader: Deno.Reader
 ): AsyncIterableIterator<Deno.Buffer>
 ```
+
+cat program example:
 
 ```ts
 import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
@@ -56,6 +62,8 @@ async function* lines(
 ): AsyncIterableIterator<string>
 ```
 
+cat program example:
+
 ```ts
 import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
 
@@ -79,6 +87,58 @@ If it isn't clear from the examples, first open a file then feed the file to `li
 
 
 ### input module
+
+#### input
+
+signature:
+
+```ts
+type input = async (output: string) => Promise<string>
+```
+
+input example:
+
+```ts
+import { input } from "../input.ts";
+
+(async () => {
+	console.log("-- DENO ADDER --");
+	// get the next line throws if it reaches the EOF
+	const num1 = await input("Enter a number: ");
+	const num2 = await input("Enter another number: ");
+	console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
+})();
+```
+
+####  inputReader
+
+```ts
+type input = async (output: string) => Promise<string>
+
+inputReader(
+	reader: Deno.Reader = Deno.stdin,
+	writer: Deno.Writer = Deno.stdout
+): input
+```
+
+inputReader example:
+
+```ts
+import { inputReader } from "../input.ts";
+
+// you could substitute Deno.stdin and Deno.stdout with any open file (with appropriate permissions) 
+// or with a Deno Reader and Writer.
+const input = inputReader(Deno.stdin, Deno.stdout);
+
+// the below produces the same output as the input example
+(async () => {
+	console.log("-- DENO ADDER --");
+	// get the next line throws if it reaches the EOF
+	const num1 = await input("Enter a number: ");
+	const num2 = await input("Enter another number: ");
+	console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
+})();
+```
 
 ## Cat Example
 
