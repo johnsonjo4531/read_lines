@@ -2,6 +2,84 @@
 
 Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
+## Usage
+
+### lines module
+
+Importing the lines module:
+
+```
+import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
+```
+
+Usage:
+
+#### linesBuffer
+
+signature
+
+```ts
+async function* linesBuffer(
+	reader: Deno.Reader
+): AsyncIterableIterator<Deno.Buffer>
+```
+
+```ts
+import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
+
+(async () => {
+	const newlinebytes = new TextEncoder().encode("\n");
+	const file = await Deno.open(Deno.args[0]);
+	const buffer = new Deno.Buffer();
+	try {
+		const file_lines: Uint8Array[] = [];
+		for await (const line of linesBuffer(file)) {
+			// you could transform the line buffers here
+			Deno.copy(buffer, line);
+			buffer.write(newlinebytes);
+		}
+		Deno.copy(Deno.stdout, buffer);
+	} finally {
+		file.close();
+	}
+})()
+```
+
+#### lines
+
+signature:
+
+```ts
+async function* lines(
+	reader: Deno.Reader,
+	bufferSize = 4096
+): AsyncIterableIterator<string>
+```
+
+```ts
+import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
+
+(async () => {
+	const newlinebuffer = new TextEncoder().encode("\n");
+	const file = await Deno.open(filename);
+	try {
+		let fileStr = "";
+		for await (const line of lines(file)) {
+			// you could transform the line buffers here
+			fileStr += line + "\n";
+		}
+		console.log(fileStr);
+	} finally {
+		file.close();
+	}
+})();
+```
+
+If it isn't clear from the examples, first open a file then feed the file to `lines` or `linesBuffer` and they will return an iterator of the lines. `lines` will return decoded string values of the lines, and `linesBuffer` will return encoded typedArrays of the lines.
+
+
+### input module
+
 ## Cat Example
 
 See the [`./examples/cat.ts`](./examples/cat.ts) for an example to run. You can compare this with the cat implementation on deno's examples in the std library. This script's time spent seems to be roughly 3x slower than deno's cat example on my Macbook Pro's native terminal. Note that the `time` before the commands below work on bash.
