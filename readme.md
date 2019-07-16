@@ -25,13 +25,13 @@ signature:
 ```ts
 async function* linesBuffer(
 	reader: Deno.Reader
-): AsyncIterableIterator<Deno.Buffer>
+): AsyncIterableIterator<Deno.Buffer>;
 ```
 
 cat program example:
 
 ```ts
-import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
+import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts";
 
 (async () => {
 	const newlinebytes = new TextEncoder().encode("\n");
@@ -48,7 +48,7 @@ import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/rea
 	} finally {
 		file.close();
 	}
-})()
+})();
 ```
 
 #### lines
@@ -59,13 +59,13 @@ signature:
 async function* lines(
 	reader: Deno.Reader,
 	bufferSize = 4096
-): AsyncIterableIterator<string>
+): AsyncIterableIterator<string>;
 ```
 
 cat program example:
 
 ```ts
-import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
+import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts";
 
 (async () => {
 	const newlinebuffer = new TextEncoder().encode("\n");
@@ -84,7 +84,6 @@ import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_line
 ```
 
 If it isn't clear from the examples, first open a file then feed the file to `lines` or `linesBuffer` and they will return an iterator of the lines. `lines` will return decoded string values of the lines, and `linesBuffer` will return encoded typedArrays of the lines.
-
 
 ### input module
 
@@ -110,7 +109,7 @@ import { input } from "../input.ts";
 })();
 ```
 
-####  inputReader
+#### inputReader
 
 ```ts
 type input = async (output: string) => Promise<string>
@@ -126,7 +125,7 @@ inputReader example:
 ```ts
 import { inputReader } from "../input.ts";
 
-// you could substitute Deno.stdin and Deno.stdout with any open file (with appropriate permissions) 
+// you could substitute Deno.stdin and Deno.stdout with any open file (with appropriate permissions)
 // or with a Deno Reader and Writer.
 const input = inputReader(Deno.stdin, Deno.stdout);
 
