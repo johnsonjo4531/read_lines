@@ -22,7 +22,7 @@ Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
 Lines is a module to read a file line by line using promises and/or async/await. It can be useful for getting buffers of the lines with the exported `linesBuffer` method or for getting the decoded strings of the lines with the `lines` method.
 
-Input is a module that is inspired by pythons input method. It allows writing to a file stream (like stdout) and waiting for input seperated by a newline by reading from a filestream (such as stdin).
+Input is a module that is inspired by pythons input method. It allows writing to a Writer (like stdout) and waiting for input seperated by a newline by reading from a Reader (such as stdin).
 
 ## Usage
 
