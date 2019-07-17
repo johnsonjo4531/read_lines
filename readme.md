@@ -187,7 +187,9 @@ Enter another number: 3
 2 + 3 = 5
 ```
 
-## Generating a long single line file
+## Known Problems
+
+### Generating a long single line file
 
 You can generate a large single line file by running the [`./createTestFile.ts`](./createTestFile.ts) script like so: (requires file redirect shown is in unix)
 
