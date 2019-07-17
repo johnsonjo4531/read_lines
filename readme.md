@@ -36,6 +36,8 @@ import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4
 
 #### `linesBuffer`
 
+The `linesBuffer` method will help you read input line by line through an async iterable with buffered output.
+
 signature:
 
 ```ts
@@ -69,6 +71,8 @@ import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/rea
 
 #### `lines`
 
+The `lines` method will help you read input line by line through an async iterable with buffered output.
+
 signature:
 
 ```ts
@@ -99,11 +103,11 @@ import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_line
 })();
 ```
 
-If it isn't clear from the examples, first open a file then feed the file to `lines` or `linesBuffer` and they will return an iterator of the lines. `lines` will return decoded string values of the lines, and `linesBuffer` will return encoded typedArrays of the lines.
-
 ### input module
 
 #### `input`
+
+The `input` method allows you to prompt the user on stdout and wait for a line of input on stdin.
 
 signature:
 
@@ -126,6 +130,8 @@ import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_line
 ```
 
 #### `inputReader`
+
+The `inputReader` method allows you to create an `input` method of your own with different different input and output files besides stdin and stdout.
 
 signature:
 
