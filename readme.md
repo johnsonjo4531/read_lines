@@ -98,7 +98,7 @@ type input = async (output: string) => Promise<string>
 input example:
 
 ```ts
-import { input } from "../input.ts";
+import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/input.ts";
 
 (async () => {
 	console.log("-- DENO ADDER --");
@@ -123,7 +123,7 @@ inputReader(
 inputReader example:
 
 ```ts
-import { inputReader } from "../input.ts";
+import { inputReader } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/input.ts";
 
 // you could substitute Deno.stdin and Deno.stdout with any open file (with appropriate permissions)
 // or with a Deno Reader and Writer.
