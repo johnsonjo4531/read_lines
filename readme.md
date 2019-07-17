@@ -211,7 +211,7 @@ Enter another number: 3
 
 ### Handling a long single line file
 
-You can generate a large single line file by running the [`./createTestFile.ts`](./createTestFile.ts) script like so: (requires file redirect shown is in unix)
+The `lines` method of the lines method cannot handle a long single line file. To test this you can generate a large single line file by running the [`./createTestFile.ts`](./createTestFile.ts) script like so: (requires file redirect shown is in unix)
 
 ```sh
 deno createTestFile.ts > example.txt
