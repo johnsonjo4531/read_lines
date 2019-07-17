@@ -7,7 +7,7 @@ Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 - [What and Why](#what-and-why)
 - [Usage](#usage)
 	- [lines module](#lines-module)
-		- [`linesBuffer`](#lines-buffer)
+		- [`linesBuffer`](#linesbuffer)
 		- [`lines`](#lines)
 	- [input module](#input-module)
 		- [`input`](#input)
@@ -126,6 +126,8 @@ import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_line
 ```
 
 #### `inputReader`
+
+signature:
 
 ```ts
 type input = async (output: string) => Promise<string>
