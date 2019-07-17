@@ -189,7 +189,7 @@ Enter another number: 3
 
 ## Known Problems
 
-### Generating a long single line file
+### Handling a long single line file
 
 You can generate a large single line file by running the [`./createTestFile.ts`](./createTestFile.ts) script like so: (requires file redirect shown is in unix)
 
