@@ -2,7 +2,23 @@
 
 Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
-### What and Why
+## Table of Contents
+
+- [What and Why](#what-and-why)
+- [Usage](#usage)
+	- [lines module](#lines-module)
+		- [`linesBuffer`](#lines-buffer)
+		- [`lines`](#lines)
+	- [input module](#input-module)
+		- [`input`](#input)
+		- [`inputReader`](#inputreader)
+	- [Examples](#examples)
+		- [Cat Program](#cat-program)
+		- [Input Program](#input-program)
+	- [Known Problems](#known-problems)
+		- [Handling a long single line file](#handling-a-long-single-line-file)
+
+## What and Why
 
 Lines is a module to read a file line by line using promises and/or async/await. It can be useful for getting buffers of the lines with the exported `linesBuffer` method or for getting the decoded strings of the lines with the `lines` method.
 
@@ -18,7 +34,7 @@ Importing the lines module:
 import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
 ```
 
-#### linesBuffer
+#### `linesBuffer`
 
 signature:
 
@@ -51,7 +67,7 @@ import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/rea
 })();
 ```
 
-#### lines
+#### `lines`
 
 signature:
 
@@ -87,7 +103,7 @@ If it isn't clear from the examples, first open a file then feed the file to `li
 
 ### input module
 
-#### input
+#### `input`
 
 signature:
 
@@ -109,7 +125,7 @@ import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_line
 })();
 ```
 
-#### inputReader
+#### `inputReader`
 
 ```ts
 type input = async (output: string) => Promise<string>
@@ -139,7 +155,9 @@ const input = inputReader(Deno.stdin, Deno.stdout);
 })();
 ```
 
-## Cat Example
+## Examples
+
+### Cat Program
 
 See the [`./examples/cat.ts`](./examples/cat.ts) for an example to run. You can compare this with the cat implementation on deno's examples in the std library. This script's time spent seems to be roughly 3x slower than deno's cat example on my Macbook Pro's native terminal. Note that the `time` before the commands below work on bash.
 
@@ -167,7 +185,7 @@ You can download the [mobydick.txt from project gutenberg](https://www.gutenberg
 $ curl https://www.gutenberg.org/files/2701/2701-0.txt -o mobydick.txt
 ```
 
-## Input Example
+### Input Program
 
 The `lines` function's async iterator can be used directly like in [`./input.ts`](./input.ts). The input reader created in that file is somewhat similar in style to pythons `input` function. An example using the input method is given in [`./examples/input.ts`](./examples/input.ts)
 
