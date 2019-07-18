@@ -30,7 +30,7 @@ Input is a module that is inspired by pythons input method. It allows writing to
 
 Importing the lines module:
 
-```
+```ts
 import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/lines.ts"
 ```
 
