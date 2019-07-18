@@ -20,7 +20,7 @@ Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
 ## What and Why
 
-Lines is a module to read a file line by line using promises and/or async/await. It can be useful for getting buffers of the lines with the exported `linesBuffer` method or for getting the decoded strings of the lines with the `lines` method.
+Lines is a module to read a file line by line using an Async Iterable using `for await of`. It can be useful for getting buffers of the lines with the exported `linesBuffer` method or for getting the decoded strings of the lines with the `lines` method.
 
 Input is a module that is inspired by pythons input method. It allows writing to a Writer (like stdout) and waiting for input seperated by a newline by reading from a Reader (such as stdin).
 
@@ -31,7 +31,7 @@ Input is a module that is inspired by pythons input method. It allows writing to
 Importing the lines module:
 
 ```
-import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts"
+import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/lines.ts"
 ```
 
 #### `linesBuffer`
@@ -41,25 +41,24 @@ The `linesBuffer` method will help you read input line by line through an async 
 signature:
 
 ```ts
-async function* linesBuffer(
+export async function* linesBuffer(
 	reader: Deno.Reader
-): AsyncIterableIterator<Deno.Buffer>;
+): AsyncIterableIterator<Uint8Array>
 ```
 
 cat program example:
 
 ```ts
-import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts";
+import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/lines.ts";
 
 (async () => {
 	const newlinebytes = new TextEncoder().encode("\n");
 	const file = await Deno.open(Deno.args[0]);
 	const buffer = new Deno.Buffer();
 	try {
-		const file_lines: Uint8Array[] = [];
 		for await (const line of linesBuffer(file)) {
 			// you could transform the line buffers here
-			Deno.copy(buffer, line);
+			buffer.write(line);
 			buffer.write(newlinebytes);
 		}
 		Deno.copy(Deno.stdout, buffer);
@@ -85,11 +84,11 @@ async function* lines(
 cat program example:
 
 ```ts
-import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/lines.ts";
+import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/lines.ts";
 
 (async () => {
 	const newlinebuffer = new TextEncoder().encode("\n");
-	const file = await Deno.open(filename);
+	const file = await Deno.open(Deno.args[0]);
 	try {
 		let fileStr = "";
 		for await (const line of lines(file)) {
@@ -112,13 +111,13 @@ The `input` method allows you to prompt the user on stdout and wait for a line o
 signature:
 
 ```ts
-type input = async (output: string) => Promise<string>
+type input = async (output: string) => Promise<string | Deno.EOF>
 ```
 
 input example:
 
 ```ts
-import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/input.ts";
+import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/input.ts";
 
 (async () => {
 	console.log("-- DENO ADDER --");
@@ -147,7 +146,7 @@ inputReader(
 inputReader example:
 
 ```ts
-import { inputReader } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/input.ts";
+import { inputReader } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/input.ts";
 
 // you could substitute Deno.stdin and Deno.stdout with any open file (with appropriate permissions)
 // or with a Deno Reader and Writer.
@@ -178,7 +177,7 @@ $ time deno -A examples/cat.ts mobydick.txt
 or if you didn't install it yet:
 
 ```sh
-$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/examples/cat.ts mobydick.txt
+$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/examples/cat.ts mobydick.txt
 ```
 
 Deno's cat example
@@ -200,13 +199,13 @@ The `lines` function's async iterator can be used directly like in [`./input.ts`
 Try it out
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/examples/input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/examples/input.ts
 ```
 
 Here's an example run of the program
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v2.1.0/examples/input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.0/examples/input.ts
 -- DENO ADDER --
 Enter a number: 2
 Enter another number: 3

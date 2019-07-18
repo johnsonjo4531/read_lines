@@ -11,13 +11,13 @@ export function inputReader(
 	 * the line read and at the second index a boolean indicating whether the eof
 	 * has been reached.
 	 */
-	return async function input(output: string): Promise<string> {
+	return async function input(output: string): Promise<string | Deno.EOF> {
 		if (output) {
 			writer.write(new TextEncoder().encode(output));
 		}
 		const { value, done } = await lineReader.next();
 		if (done) {
-			throw new Deno.DenoError(Deno.ErrorKind.UnexpectedEof, "EOF reached");
+			return Deno.EOF
 		}
 		return value;
 	};
@@ -25,6 +25,6 @@ export function inputReader(
 
 /**
  * Takes a string to output to stdout and returns a string
- * that was given on stdin. Throws when end of file is reached.
+ * that was given on stdin. Returns Deno.EOF when end of file is reached.
  */
 export const input = inputReader();

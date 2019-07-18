@@ -1,5 +1,6 @@
 import { runTests, test, assertEquals, assertThrowsAsync } from "./dev_deps.ts";
 import { inputReader } from "./input.ts";
+import { assert } from "../../../../../Library/Caches/deno/deps/https/deno.land/std@v0.11/testing/asserts.ts";
 
 test(async function inputReaderTest() {
 	const linesIn = [
@@ -31,9 +32,7 @@ test(async function inputReaderTest() {
 	}
 
 	// should throw EOF error Deno.ErrorKind.UnexpectedEof
-	assertThrowsAsync(async () => {
-		await input(linesOut[i]);
-	}, Deno.DenoError);
+	assertEquals(await input(linesOut[i]), Deno.EOF);
 
 	// test that data was output correctly
 	assertEquals(readerOutput, expectedOutput);

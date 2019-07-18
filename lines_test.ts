@@ -8,20 +8,19 @@ test(async function linesBufferTest() {
 	const line4 = "Don't know what to write here";
 	const encoder = new TextEncoder();
 	const input = new Deno.Buffer();
-	const outputLine1 = new Deno.Buffer();
-	const outputLine2 = new Deno.Buffer();
-	const outputLine3 = new Deno.Buffer();
-	const outputLine4 = new Deno.Buffer();
+	const outputLine1 = new Uint8Array(encoder.encode(line1));
+	const outputLine2 = new Uint8Array(encoder.encode(line2));
+	const outputLine3 = new Uint8Array(encoder.encode(line3));
+	const outputLine4 = new Uint8Array(encoder.encode(line4));
 	input.write(encoder.encode(`${line1}\n${line2}\n${line3}\n${line4}`));
-	outputLine1.write(encoder.encode(line1));
-	outputLine2.write(encoder.encode(line2));
-	outputLine3.write(encoder.encode(line3));
-	outputLine4.write(encoder.encode(line4));
-	const expected = [outputLine1, outputLine2, outputLine3, outputLine4];
+	const expected = new Deno.Buffer();
+	[outputLine1, outputLine2, outputLine3, outputLine4].forEach(function (x) {
+		expected.write(x);
+	});
 
-	const output = [];
+	const output = new Deno.Buffer();
 	for await (const lineBuff of linesBuffer(input)) {
-		output.push(lineBuff);
+		output.write(lineBuff);
 	}
 
 	assertEquals(output, expected);

@@ -1,24 +1,19 @@
-import { BufReader } from "https://deno.land/x/io@v0.3.4/bufio.ts";
+import { TextProtoReader } from 'https://deno.land/std@v0.12/textproto/mod.ts';
+import { BufReader } from 'https://deno.land/std@v0.12/io/bufio.ts';
 
 /** Yields a buffer of each line given from the reader. */
 export async function* linesBuffer(
-	reader: Deno.Reader
-): AsyncIterableIterator<Deno.Buffer> {
-	const bufReader = new BufReader(reader);
-	let bufState = null;
-	let buffer = new Deno.Buffer();
-	while (bufState !== "EOF") {
-		let bytes, isPrefix;
-		[bytes, isPrefix, bufState] = await bufReader.readLine();
-		await buffer.write(bytes);
-		if (isPrefix) {
-			continue;
-		}
-		if (bufState === "EOF") {
+	reader: Deno.Reader,
+	bufferSize = 4096
+): AsyncIterableIterator<Uint8Array> {
+	const tpReader = new TextProtoReader(new BufReader(reader, bufferSize));
+	let buffer;
+	while (buffer !== Deno.EOF) {
+		buffer = await tpReader.readLineSlice();
+		if(buffer == Deno.EOF) {
 			return;
 		}
 		yield buffer;
-		buffer = new Deno.Buffer();
 	}
 }
 
@@ -27,22 +22,11 @@ export async function* lines(
 	reader: Deno.Reader,
 	bufferSize = 4096
 ): AsyncIterableIterator<string> {
-	const decoder = new TextDecoder();
-	for await (const line of linesBuffer(reader)) {
-		// yield
-		const buffer = new Deno.Buffer();
-		let eof = false,
-			nread = 0,
-			str = "";
-		const bytes = new Uint8Array(bufferSize);
-		while (!eof) {
-			({ nread, eof } = await line.read(bytes));
-			if (bytes.byteLength === nread) {
-				str += decoder.decode(bytes);
-			} else {
-				str += decoder.decode(bytes.slice(0, nread));
-			}
-		}
-		yield str;
+	const tpReader = new TextProtoReader(new BufReader(reader, bufferSize));
+	let buffer;
+	while (buffer !== Deno.EOF) {
+		buffer = await tpReader.readLine();
+		if(Deno.EOF === buffer) break;
+		yield buffer;
 	}
 }
