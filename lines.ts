@@ -1,5 +1,5 @@
-import { TextProtoReader } from 'https://deno.land/std@v0.12/textproto/mod.ts';
-import { BufReader } from 'https://deno.land/std@v0.12/io/bufio.ts';
+import { TextProtoReader } from 'https://deno.land/std/textproto/mod.ts';
+import { BufReader } from 'https://deno.land/std/io/bufio.ts';
 
 /** Yields a buffer of each line given from the reader. */
 export async function* linesBuffer(
