@@ -24,9 +24,9 @@ Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
 
 Input is a module that is inspired by pythons input method. It allows writing to a Writer (like stdout) and waiting for input separated by a newline by reading from a Reader (such as stdin).
 
-Lines is now a deprecated module, because it can now be achieved with only the Deno standard library functions in `bufio.ts` read below or look at the implementation to see how it's implemented now.  Lines is a module to read a file line by line using an Async Iterable using `for await of`. It can be useful for getting buffers of the lines with the exported `linesBuffer` method or for getting the decoded strings of the lines with the `lines` method.
+Lines is now a deprecated module, because it can now be achieved with only the Deno standard library functions in `bufio.ts` read below or look at the implementation to see how it's implemented now. Lines is a module to read a file line by line using an Async Iterable using `for await of`. It can be useful for getting buffers of the lines with the exported `linesBuffer` method or for getting the decoded strings of the lines with the `lines` method.
 
-## input module 
+## input module
 
 ### Usage
 
@@ -46,11 +46,11 @@ input example:
 import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/input.ts";
 
 (async () => {
-  console.log('-- DENO ADDER --');
-  // will return EOF string if end of file is hit.
-  const num1 = String(await input('Enter a number: '));
-  const num2 = String(await input('Enter another number: '));
-  console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
+	console.log("-- DENO ADDER --");
+	// will return EOF string if end of file is hit.
+	const num1 = String(await input("Enter a number: "));
+	const num2 = String(await input("Enter another number: "));
+	console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
 })();
 ```
 
@@ -119,7 +119,10 @@ Enter another number: 3
 Importing the lines module:
 
 ```ts
-import { lines, linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/lines.ts"
+import {
+	lines,
+	linesBuffer,
+} from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/lines.ts";
 ```
 
 #### `linesBuffer`
@@ -132,7 +135,7 @@ signature:
 ```ts
 export async function* linesBuffer(
 	reader: Deno.Reader
-): AsyncIterableIterator<Uint8Array>
+): AsyncIterableIterator<Uint8Array>;
 ```
 
 cat program example:
