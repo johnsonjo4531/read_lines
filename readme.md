@@ -114,7 +114,7 @@ Enter another number: 3
 
 ### Usage
 
-⚠The lines module is now deprecated!⚠️
+⚠ The lines module is now deprecated due to the changes in Deno standard library these functions are replaced by readDelim and readLines in std/io/bufio. ⚠️
 
 Importing the lines module:
 
