@@ -1,6 +1,5 @@
 import { runTests, test, assertEquals, assertThrowsAsync } from "./dev_deps.ts";
 import { inputReader } from "./input.ts";
-import { assert } from "../../../../../Library/Caches/deno/deps/https/deno.land/std@v0.11/testing/asserts.ts";
 
 test(async function inputReaderTest() {
 	const linesIn = [

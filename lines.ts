@@ -1,32 +1,11 @@
-import { TextProtoReader } from 'https://deno.land/std/textproto/mod.ts';
-import { BufReader } from 'https://deno.land/std/io/bufio.ts';
+type Reader = Deno.Reader;
+import { readDelim, readLines } from 'https://deno.land/std@v0.36.0/io/bufio.ts';
 
 /** Yields a buffer of each line given from the reader. */
+/** Read delimited strings from a Reader. */
 export async function* linesBuffer(
 	reader: Deno.Reader,
-	bufferSize = 4096
-): AsyncIterableIterator<Uint8Array> {
-	const tpReader = new TextProtoReader(new BufReader(reader, bufferSize));
-	let buffer;
-	while (buffer !== Deno.EOF) {
-		buffer = await tpReader.readLineSlice();
-		if(buffer == Deno.EOF) {
-			return;
-		}
-		yield buffer;
-	}
-}
+): AsyncIterableIterator<Uint8Array> { yield* readDelim(reader, new TextEncoder().encode('\n')) };
 
 /** Reads from a reader and yields each line as a str. */
-export async function* lines(
-	reader: Deno.Reader,
-	bufferSize = 4096
-): AsyncIterableIterator<string> {
-	const tpReader = new TextProtoReader(new BufReader(reader, bufferSize));
-	let buffer;
-	while (buffer !== Deno.EOF) {
-		buffer = await tpReader.readLine();
-		if(Deno.EOF === buffer) break;
-		yield buffer;
-	}
-}
+export const lines = readLines;

@@ -18,5 +18,4 @@ async function cat(filenames: string[]): Promise<void> {
 		}
 	}
 }
-
-cat(Deno.args.slice(1));
+cat(Deno.args);
