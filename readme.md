@@ -46,11 +46,11 @@ input example:
 import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/input.ts";
 
 (async () => {
-	console.log("-- DENO ADDER --");
-	// get the next line throws if it reaches the EOF
-	const num1 = await input("Enter a number: ");
-	const num2 = await input("Enter another number: ");
-	console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
+  console.log('-- DENO ADDER --');
+  // will return EOF string if end of file is hit.
+  const num1 = String(await input('Enter a number: '));
+  const num2 = String(await input('Enter another number: '));
+  console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
 })();
 ```
 
@@ -82,8 +82,8 @@ const input = inputReader(Deno.stdin, Deno.stdout);
 (async () => {
 	console.log("-- DENO ADDER --");
 	// get the next line throws if it reaches the EOF
-	const num1 = await input("Enter a number: ");
-	const num2 = await input("Enter another number: ");
+	const num1 = String(await input("Enter a number: "));
+	const num2 = String(await input("Enter another number: "));
 	console.log(`${num1} + ${num2} = ${Number(num1) + Number(num2)}`);
 })();
 ```
