@@ -1,5 +1,5 @@
 type Reader = Deno.Reader;
-import { readDelim, readLines } from 'https://deno.land/std@v0.36.0/io/bufio.ts';
+import { readDelim, readLines } from 'https://deno.land/std@v0.42.0/io/bufio.ts';
 
 /** Yields a buffer of each line given from the reader. */
 /** Read delimited strings from a Reader. */
