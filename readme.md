@@ -43,7 +43,7 @@ type input = async (output: string) => Promise<string | Deno.EOF>
 input example:
 
 ```ts
-import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/input.ts";
+import { input } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/input.ts";
 
 (async () => {
 	console.log("-- DENO ADDER --");
@@ -72,7 +72,7 @@ inputReader(
 inputReader example:
 
 ```ts
-import { inputReader } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/input.ts";
+import { inputReader } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/input.ts";
 
 // you could substitute Deno.stdin and Deno.stdout with any open file (with appropriate permissions)
 // or with a Deno Reader and Writer.
@@ -97,13 +97,13 @@ The `lines` function's async iterator can be used directly like in [`./input.ts`
 Try it out
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/examples/input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/examples/input.ts
 ```
 
 Here's an example run of the program
 
 ```sh
-$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/examples/input.ts
+$ deno https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/examples/input.ts
 -- DENO ADDER --
 Enter a number: 2
 Enter another number: 3
@@ -114,7 +114,7 @@ Enter another number: 3
 
 ### Usage
 
-⚠ The lines module is now deprecated due to the changes in Deno standard library these functions are replaced by readDelim and readLines in std/io/bufio. ⚠️
+⚠ The lines module is now deprecated due to the changes in Deno standard library these functions are replaced by readDelim and readLines in std/io/bufio. It's suggested you just use those.⚠️
 
 Importing the lines module:
 
@@ -122,12 +122,12 @@ Importing the lines module:
 import {
 	lines,
 	linesBuffer,
-} from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/lines.ts";
+} from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/lines.ts";
 ```
 
 #### `linesBuffer`
 
-The `linesBuffer` method is deprecated and is now just a light wrapper around [readDelim](https://github.com/denoland/deno/blob/a29343c7d6b5dad26c5d501eb6d21e9caf382a58/std/io/bufio.ts#L534-L590) from Deno standard library.  
+The `linesBuffer` method is deprecated and is now just a light wrapper around [readDelim](https://github.com/denoland/deno/blob/a29343c7d6b5dad26c5d501eb6d21e9caf382a58/std/io/bufio.ts#L534-L590) from Deno standard library it's suggested you just use that.  
 It will help you read input line by line through an async iterable with buffered output.
 
 signature:
@@ -141,7 +141,7 @@ export async function* linesBuffer(
 cat program example:
 
 ```ts
-import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/lines.ts";
+import { linesBuffer } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/lines.ts";
 
 (async () => {
 	const newlinebytes = new TextEncoder().encode("\n");
@@ -176,7 +176,7 @@ async function* lines(
 cat program example:
 
 ```ts
-import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/lines.ts";
+import { lines } from "https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/lines.ts";
 
 (async () => {
 	const newlinebuffer = new TextEncoder().encode("\n");
@@ -209,7 +209,7 @@ $ time deno -A examples/cat.ts mobydick.txt
 or if you didn't install it yet:
 
 ```sh
-$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.0.3/examples/cat.ts mobydick.txt
+$ time deno -A https://raw.githubusercontent.com/johnsonjo4531/read_lines/v3.1.0/examples/cat.ts mobydick.txt
 ```
 
 Deno's cat example

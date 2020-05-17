@@ -1,7 +1,7 @@
-import { runTests, test, assertEquals } from "./dev_deps.ts";
+import { test, assertEquals } from "./dev_deps.ts";
 import { lines, linesBuffer } from "./lines.ts";
 
-test(async function linesBufferTest() {
+test("Lines buffer should work", async function linesBufferTest() {
 	const line1 = "Something something";
 	const line2 = "Blah blah blah";
 	const line3 = "";
@@ -26,7 +26,7 @@ test(async function linesBufferTest() {
 	assertEquals(output, expected);
 });
 
-test(async function linesTest() {
+test("Lines should work", async function linesTest() {
 	const line1 = "Something something";
 	const line2 = "Blah blah blah";
 	const line3 = "";
@@ -43,5 +43,3 @@ test(async function linesTest() {
 
 	assertEquals(output, expected);
 });
-
-runTests();
