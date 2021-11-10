@@ -1,3 +1,7 @@
+# IMPORTANT NOTICE
+
+I have since abandoned this repo in favor of my [python_input](https://github.com/johnsonjo4531/pythonic_input) repository. Which is just the input part of this repo.
+
 # read_lines
 
 Main scripts are [lines.ts](./lines.ts) and [input.ts](./input.ts).
